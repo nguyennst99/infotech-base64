@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encode</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-buttons">
+            <a href="../encode/encode.html">Base64 Encode </a>
+            <a href="../decode/decode.html">Base64 Decode</a>
+        </div>
+    </header>
+    <div class="top-ads"></div>
+    <div class="content">
+        <div class="section">
+            <div class="input-section">
+                <h1>Base64 to Image</h1>
+                <label for="text-input">Decode image from Base64 encoded data</label>
+                <textarea id="text-input" rows="10" cols="25" placeholder="Input Base64 encoded data"></textarea>
+            </div>
+            <h1 style="text-align: center">OR</h1>
+            <text style="margin-bottom: 10px">If you have large Base64 string, upload it as file</text>
+            <div class="file-section" style="margin-top: 10px">
+                <label for="fileInput" class="custom-file-upload" id="fileInputLabel">
+                    SELECT BASE64 ENCODED IMAGE
+                </label>
+                <div class="nav-ads"></div>
+                <div class="button-section">
+                    <input type="file" id="fileInput" accept="*"/>
+                    <button id="encode-button" onclick="convertToBase64()">ENCODE</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="nav">
+            <h3>More tools</h3>
+            <div class="nav-buttons">
+                <a href="base64-image.html">Base64 to Image</a>
+                <a href="base64-file.html">Base64 to File</a>
+                <a href="base64-pdf.html">Base64 to PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../js/encode/file-base64.js"></script>
+
+</body>
+</html>

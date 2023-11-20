@@ -11,26 +11,31 @@
     <header>
         <div class="header-buttons">
             <a href="../encode/encode.html">Base64 Encode </a>
-            <a href="decode.html">Base64 Decode</a>
+            <a href="../decode/decode.html">Base64 Decode</a>
         </div>
     </header>
     <div class="top-ads"></div>
     <div class="content">
         <div class="section">
             <div class="input-section">
-                <h1>Base64 Decode</h1>
-                <label for="text-input">
-                    Decode Base64 string or use the
-                    <a href="base64-file.html">Base64 to File</a>
-                    tool for large files
+                <h1>Base64 to File</h1>
+                <text>
+                    Decode Base64 encoded file or use the
+                    <a href="decode.html">Base64 Decode</a>
+                    tool if you have a base64 string
+                </text>
+            </div>
+            <div class="file-section">
+                <label for="fileInput" class="custom-file-upload" id="fileInputLabel">
+                    SELECT FILE
                 </label>
-                <textarea id="text-input" rows="20" cols="50" placeholder="Input Base64 encoded string"></textarea>
+                <div class="nav-ads"></div>
+                <div class="button-section">
+                    <input type="file" id="fileInput" accept="*"/>
+                    <button id="encode-button" onclick="convertToBase64()">ENCODE</button>
+                </div>
             </div>
-            <div class="nav-ads"></div>
-            <div class="button-section">
-                <button id="encode-button" onclick="decodeBase64()">DECODE</button>
-            </div>
-            <div id="output" style="margin-top: 10px"></div>
+
         </div>
         <div class="nav">
             <h3>More tools</h3>
@@ -42,7 +47,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../../js/decode/decode.js"></script>
+<script type="text/javascript" src="../../js/encode/file-base64.js"></script>
 
 </body>
 </html>

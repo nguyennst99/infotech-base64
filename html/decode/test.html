@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 File Decoder</title>
+    <style>
+       body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          text-align: center;
+          padding: 20px;
+       }
+       #output {
+          margin-top: 20px;
+          padding: 10px;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          white-space: pre-wrap;
+       }
+    </style>
+</head>
+<body>
+<h1>Base64 File Decoder</h1>
+<form id="base64FileForm">
+    <label for="fileInput">Choose a Base64-encoded file:</label>
+    <input type="file" id="fileInput" accept=".txt, .pdf, .png, .jpg, .jpeg, .gif">
+    <button type="button" onclick="decodeAndDownload()">Decode and Download</button>
+</form>
+<div id="output"></div>
+
+<script>
+   function decodeAndDownload() {
+      const fileInput = document.getElementById('fileInput');
+      const outputDiv = document.getElementById('output');
+
+      if (fileInput.files.length > 0) {
+         const file = fileInput.files[0];
+         const reader = new FileReader();
+
+         reader.onload = function (e) {
+            try {
+               const base64Content = e.target.result.split(',')[1];
+               const decodedContent = atob(base64Content);
+
+               // Convert the decoded content to Uint8Array
+               const uint8Array = new Uint8Array(decodedContent.length);
+               for (let i = 0; i < decodedContent.length; i++) {
+                  uint8Array[i] = decodedContent.charCodeAt(i);
+               }
+
+               // Determine the MIME type based on the file extension
+               let mimeType = '';
+               if (file.name.toLowerCase().endsWith('.pdf')) {
+                  mimeType = 'application/pdf';
+               } else if (file.name.toLowerCase().endsWith('.txt')) {
+                  mimeType = 'text/plain';
+               } else {
+                  // Add conditions for other file types as needed
+                  mimeType = 'application/octet-stream';
+               }
+
+               // Create a Blob from the Uint8Array
+               const blob = new Blob([uint8Array], { type: mimeType });
+
+               // Create a download link
+               const downloadLink = document.createElement('a');
+               downloadLink.href = URL.createObjectURL(blob);
+               downloadLink.download = file.name; // Set the correct file name
+               downloadLink.style.display = 'none';
+
+               // Append the link to the body and trigger the download
+               document.body.appendChild(downloadLink);
+               downloadLink.click();
+               document.body.removeChild(downloadLink);
+            } catch (error) {
+               outputDiv.textContent = 'Invalid Base64 encoding for the selected file.';
+            }
+         };
+
+         reader.readAsDataURL(file);
+      } else {
+         outputDiv.textContent = 'Please choose a file.';
+      }
+   }
+</script>
+</body>
+</html>
